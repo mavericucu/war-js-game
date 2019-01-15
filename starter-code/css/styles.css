@@ -46,3 +46,8 @@ body {
     background-color: purple;  
     border-radius: .5rem;
 }
+
+.status-message {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
