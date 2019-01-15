@@ -7,10 +7,11 @@ html {
   box-sizing: inherit;
 }
 
-body {
+body, ul {
   margin: 0;
   padding: 0;
 }
+
 
 /* ---- game styles ---- */
 
@@ -50,4 +51,16 @@ body {
 .status-message {
     font-size: 1.2rem;
     margin-bottom: 3rem;
+}
+
+.army {
+    text-align: center;
+}
+
+.soldier {
+    list-style: none;
+    float: left;
+}
+.soldier--dead img {
+    transform: rotate(90deg);
 }
