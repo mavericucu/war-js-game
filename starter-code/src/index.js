@@ -30,6 +30,21 @@ names.forEach(function(name) {
     war.addSaxon(saxon);
 });
 
+// Event handlers
+
+function startGameClick() {
+    destroySplashScreen();
+    buildGameScreen();
+}
+
+function vikingAttackClicked() {
+    var message = war.vikingAttack();
+    console.log(message);
+}
+function saxonAttackClicked() {
+    var message = war.saxonAttack();
+    console.log(message);
+}
 
 // DOM manipulations
 
@@ -52,9 +67,7 @@ function buildSplashScreen() {
 
     splashScreen
         .querySelector(".button")
-        .addEventListener("click", function() {
-            console.log("Start Game clicked");
-        });
+        .addEventListener("click", startGameClick);
 }
 
 function destroySplashScreen() {
@@ -63,7 +76,7 @@ function destroySplashScreen() {
 
 function buildGameScreen() {
     gameScreen = buildDom(`
-        <div class="army">
+        <div id="viking-army" class="army">
             <h2>Vikings</h2>
             <ul>
                 <li class="soldier">
@@ -74,7 +87,7 @@ function buildGameScreen() {
                 </li>
             </ul>
         </div>
-        <div class="army">
+        <div id="saxon-army" class="army">
             <h2>Saxons</h2>
             <ul>
                 <li class="soldier">
@@ -89,19 +102,25 @@ function buildGameScreen() {
             A Saxon has received 7 points of damage
         </div>
         <div class="attacks">
-            <button class="button">Viking Attack</button>
-            <button class="button">Saxon Attack</button>
+            <button id="viking-attack" class="button">Viking Attack</button>
+            <button id="saxon-attack" class="button">Saxon Attack</button>
         </div>  
     `);
+
+    var vikingAttackButton = gameScreen.querySelector("#viking-attack");
+    var saxonAttackButton = gameScreen.querySelector("#saxon-attack");
+
+    vikingAttackButton.addEventListener("click", vikingAttackClicked);
+    saxonAttackButton.addEventListener("click", saxonAttackClicked);
 }
 
 function destroyGameScreen() {
     destroyDom(gameScreen);
 }
 
-
 function loadGame() {
     console.log("Let the war games beggin!");
+    buildSplashScreen();
 }
 
 window.addEventListener("load", loadGame);
